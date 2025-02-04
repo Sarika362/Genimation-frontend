@@ -16,7 +16,7 @@ const Genimation = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/generate-video`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/generate-video`),{ 
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: input }),
@@ -39,7 +39,7 @@ const Genimation = () => {
 
   const handleDownload = async () => {
     if (!videoUrl) {
-      alert("⚠ Video not ready for download.");
+      alert("⚠️ Video not ready for download.");
       return;
     }
 
@@ -47,10 +47,10 @@ const Genimation = () => {
       const response = await fetch(videoUrl);
       const blob = await response.blob();
       const fileExtension = videoUrl.split(".").pop(); // Get file extension
-      saveAs(blob, `generated-video.${fileExtension}`);
+      saveAs(blob, `generated-video.${fileExtension}`) 
     } catch (error) {
       console.error("❌ Download error:", error);
-      alert("⚠ Failed to download video.");
+      alert("⚠️ Failed to download video.");
     }
   };
 
